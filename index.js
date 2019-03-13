@@ -11,7 +11,7 @@ function RPC (src, dst, origin, methods) {
     var self = this;
     this.src = src;
     this.dst = dst;
-    this._dstIsWorker = /Worker/.test(dst);
+    this._dstIsWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
     
     if (origin === '*') {
         this.origin = '*';
