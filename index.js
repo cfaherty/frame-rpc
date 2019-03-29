@@ -17,8 +17,8 @@ function RPC (src, dst, origin, methods) {
         this.origin = '*';
     }
     else if (origin) {
-        var uorigin = new URL(origin);
-        this.origin = uorigin.protocol + '//' + uorigin.host;
+        var [protocol, host] = origin.match(/^(https?)?\:?(?:\/\/)?([^\/\?]+)/i);
+        this.origin = (protocol || 'http') + '//' + host;
     }
     
     this._sequence = 0;
