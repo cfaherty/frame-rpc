@@ -17,8 +17,10 @@ function RPC (src, dst, origin, methods) {
         this.origin = '*';
     }
     else if (origin) {
-        var [protocol, host] = origin.match(/^(https?)?\:?(?:\/\/)?([^\/\?]+)/i);
-        this.origin = (protocol || 'http') + '//' + host;
+        var matches = origin.match(/^(https?)?\:?(?:\/\/)?([^\/\?]+)/i);
+        var protocol = matches[1] || 'http';
+        var host = matches[2];
+        this.origin = protocol + '://' + host;
     }
     
     this._sequence = 0;
